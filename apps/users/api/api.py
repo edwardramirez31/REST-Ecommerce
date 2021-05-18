@@ -1,4 +1,4 @@
-from .serializers import UserSerializer
+from .serializers import UserSerializer, TestSerializer, ListUserSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from apps.users.models import User
@@ -9,6 +9,17 @@ class UserAPIView(APIView):
     def get(self, request):
         users = User.objects.all()
         users_serializer = UserSerializer(users, many=True)
+        # test serializer
+        data = {
+            "name": "Edward Ramírez",
+            "email": "edwards@gmail.com",
+        }
+        serializer = TestSerializer(data=data)
+        if serializer.is_valid():
+            print("This is valid")
+        else:
+            print(serializer.errors)
+
         return Response(users_serializer.data)
 
 
@@ -39,8 +50,8 @@ def user_api_view(request, pk):
 def users_api_view(request):
 
     if request.method == 'GET':
-        users = User.objects.all()
-        users_serializer = UserSerializer(users, many=True)
+        users = User.objects.all().values("id", "username", "email", "password")
+        users_serializer = ListUserSerializer(users, many=True)
         return Response(users_serializer.data, status=status.HTTP_200_OK)
 
     elif request.method == 'POST':
