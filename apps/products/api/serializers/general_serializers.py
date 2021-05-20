@@ -1,5 +1,6 @@
-from apps.products.models import MeasureUnit, CategoryProduct, Indicator
 from rest_framework import serializers
+
+from apps.products.models import MeasureUnit, CategoryProduct, Indicator
 
 class MeasureUnitSerializer(serializers.ModelSerializer):
 
