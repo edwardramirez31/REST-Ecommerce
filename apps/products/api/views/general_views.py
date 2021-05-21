@@ -1,7 +1,6 @@
 from apps.base.api import BaseListAPIView
-from apps.products.api.serializers.general_serializers import (MeasureUnitSerializer, 
-IndicatorSerializer, 
-CategoryProductSerializer)
+from apps.products.api.serializers.general_serializers import (
+    CategoryProductSerializer, IndicatorSerializer, MeasureUnitSerializer)
 
 
 class MeasureUnitListView(BaseListAPIView):
@@ -14,4 +13,3 @@ class CategoryProductListView(BaseListAPIView):
 
 class IndicatorListView(BaseListAPIView):
     serializer_class = IndicatorSerializer
-

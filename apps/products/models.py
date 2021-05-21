@@ -2,8 +2,11 @@ from django.db import models
 from django.db.models.base import ModelStateFieldsCacheDescriptor
 from django.urls import reverse
 from django.utils.translation import gettext as _
-from apps.base.models import BaseModel
+
 from simple_history.models import HistoricalRecords
+
+from apps.base.models import BaseModel
+
 
 # Create your models here.
 class MeasureUnit(BaseModel):

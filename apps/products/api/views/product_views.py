@@ -1,7 +1,8 @@
 from rest_framework import generics
 
-from apps.products.models import Product
 from apps.products.api.serializers.product_serializers import ProductSerializer
+from apps.products.models import Product
+
 
 class ProductListView(generics.ListAPIView):
     serializer_class = ProductSerializer
@@ -10,4 +11,5 @@ class ProductListView(generics.ListAPIView):
         return Product.objects.filter(state=True)
 
 
-        
+class ProductCreateAPIView(generics.CreateAPIView):
+    serializer_class = ProductSerializer
