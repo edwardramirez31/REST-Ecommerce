@@ -23,11 +23,15 @@ class ProductSerializer(serializers.ModelSerializer):
         exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
 
     def to_representation(self, instance):
+        # handling null values from the database
+        category = instance.category.description if instance.category else ""
+        measure_unit = instance.measure_unit.description if instance.measure_unit else ""
+
         return {
             'id': instance.pk,
             'name': instance.name,
             'description': instance.description,
             'image': instance.image.name,
-            'category': instance.category.description,
-            "measure_unit": instance.measure_unit.description,
+            'category': category,
+            "measure_unit": measure_unit,
         }
